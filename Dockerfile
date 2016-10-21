@@ -17,6 +17,7 @@ RUN cd ~/opt/src/seagull/seagull/trunk/src &&\
   ksh build.ksh -target clean &&\
   ksh build.ksh -target all
 RUN cp ~/opt/src/seagull/seagull/trunk/src/bin/* /usr/local/bin
+ENV LD_LIBRARY_PATH /usr/local/bin
 RUN mkdir -p /opt/seagull &&\
   cp -r ~/opt/src/seagull/seagull/trunk/src/exe-env/* /opt/seagull
 RUN [ "/bin/bash", "-c", "mkdir -p /opt/seagull/{diameter-env,h248-env,http-env,msrp-env,octcap-env,radius-env,sip-env,synchro-env,xcap-env}/logs" ]
