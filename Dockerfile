@@ -3,7 +3,7 @@ FROM ubuntu:15.04
 RUN apt-get update
 RUN apt-get -y install build-essential curl git libglib2.0-dev ksh bison flex vim tmux
 RUN mkdir -p ~/opt/src
-RUN git clone https://github.com/hamzasheikh/Seagull.git ~/opt/src/seagull &&\
+RUN git clone https://github.com/codeghar/Seagull.git ~/opt/src/seagull &&\
   cd ~/opt/src/seagull &&\
   git branch build master &&\
   git checkout build
