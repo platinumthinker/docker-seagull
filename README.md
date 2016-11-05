@@ -1,4 +1,4 @@
-# seagull-docker
+# docker-seagull
 
 A Dockerized version of [Seagull](http://gull.sourceforge.net/) - a multi-protocol traffic generator.
 
