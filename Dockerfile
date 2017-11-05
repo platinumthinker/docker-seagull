@@ -22,4 +22,6 @@ RUN mkdir -p /opt/seagull &&\
   cp -r ~/opt/src/seagull/seagull/trunk/src/exe-env/* /opt/seagull
 RUN [ "/bin/bash", "-c", "mkdir -p /opt/seagull/{diameter-env,h248-env,http-env,msrp-env,octcap-env,radius-env,sip-env,synchro-env,xcap-env}/logs" ]
 
-WORKDIR /opt/seagull
+ENV PATH $PATH:/opt/seagull
+
+ENTRYPOINT [ "seagull" ]
