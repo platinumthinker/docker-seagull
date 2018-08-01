@@ -18,7 +18,7 @@ RUN apt update &&\
   cd ~/opt/src/seagull/seagull/trunk/src &&\
   ksh ./install.ksh &&\
   cp ~/opt/src/seagull/seagull/trunk/src/ext-*/lib/lib* /usr/local/bin/ &&\
-  apt -y purge curl git libc-dev perl g++ bison flex &&\
+  apt -y purge git libc-dev perl g++ bison flex &&\
   apt-get -y --purge autoremove && \
   rm -rf ~/opt /var/lib/apt/lists/* /var/log/*
 RUN [ "/bin/bash", "-c", "mkdir -p /opt/seagull/{diameter-env,h248-env,http-env,msrp-env,octcap-env,radius-env,sip-env,synchro-env,xcap-env}/logs" ]
