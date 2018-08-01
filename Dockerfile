@@ -1,4 +1,4 @@
-FROM ubuntu:15.04
+FROM ubuntu
 
 RUN apt-get update
 RUN apt-get -y install build-essential curl git libglib2.0-dev ksh bison flex vim tmux
@@ -12,6 +12,7 @@ RUN cd ~/opt/src/seagull/seagull/trunk/src &&\
   curl --create-dirs -o ~/opt/src/seagull/seagull/trunk/src/external-lib-src/socketapi-2.2.8.tar.gz http://www.sctp.de/download/socketapi-2.2.8.tar.gz
 RUN cd ~/opt/src/seagull/seagull/trunk/src &&\
   curl --create-dirs -o ~/opt/src/seagull/seagull/trunk/src/external-lib-src/openssl-1.0.2e.tar.gz https://www.openssl.org/source/openssl-1.0.2e.tar.gz &&\
+  echo 'BUILD_EXE_CC_FLAGS_LINUX="$BUILD_EXE_CC_FLAGS_LINUX -Wno-uninitialized"' >> ./build.conf &&\
   ksh build-ext-lib.ksh
 RUN cd ~/opt/src/seagull/seagull/trunk/src &&\
   ksh build.ksh -target clean &&\
