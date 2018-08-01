@@ -1,22 +1,23 @@
 FROM ubuntu
 
-RUN apt-get update
-RUN apt-get -y install build-essential curl git libglib2.0-dev ksh bison flex vim tmux
-RUN mkdir -p ~/opt/src
-RUN git clone https://github.com/codeghar/Seagull.git ~/opt/src/seagull &&\
+RUN apt update &&\
+  apt -y install curl vim g++ make libc-dev perl binutils git libglib2.0-dev ksh bison flex &&\
+  mkdir -p ~/opt/src &&\
+  git clone https://github.com/codeghar/Seagull.git ~/opt/src/seagull &&\
   cd ~/opt/src/seagull &&\
   git branch build master &&\
-  git checkout build
-RUN cd ~/opt/src/seagull/seagull/trunk/src &&\
+  git checkout build &&\
+  cd ~/opt/src/seagull/seagull/trunk/src &&\
   curl --create-dirs -o ~/opt/src/seagull/seagull/trunk/src/external-lib-src/sctplib-1.0.15.tar.gz http://www.sctp.de/download/sctplib-1.0.15.tar.gz &&\
-  curl --create-dirs -o ~/opt/src/seagull/seagull/trunk/src/external-lib-src/socketapi-2.2.8.tar.gz http://www.sctp.de/download/socketapi-2.2.8.tar.gz
-RUN cd ~/opt/src/seagull/seagull/trunk/src &&\
+  curl --create-dirs -o ~/opt/src/seagull/seagull/trunk/src/external-lib-src/socketapi-2.2.8.tar.gz http://www.sctp.de/download/socketapi-2.2.8.tar.gz &&\
   curl --create-dirs -o ~/opt/src/seagull/seagull/trunk/src/external-lib-src/openssl-1.0.2e.tar.gz https://www.openssl.org/source/openssl-1.0.2e.tar.gz &&\
   echo 'BUILD_EXE_CC_FLAGS_LINUX="$BUILD_EXE_CC_FLAGS_LINUX -Wno-uninitialized"' >> ./build.conf &&\
-  ksh build-ext-lib.ksh
-RUN cd ~/opt/src/seagull/seagull/trunk/src &&\
   ksh build.ksh -target clean &&\
-  ksh build.ksh -target all
+  ksh build-ext-lib.ksh &&\
+  ksh build.ksh -target all &&\
+  apt -y purge curl git libc-dev perl g++ bison flex &&\
+  apt-get -y --purge autoremove && \
+  rm -rf ~/opt /var/lib/apt/lists/* /var/log/*
 RUN cp ~/opt/src/seagull/seagull/trunk/src/bin/* /usr/local/bin
 ENV LD_LIBRARY_PATH /usr/local/bin
 RUN mkdir -p /opt/seagull &&\
