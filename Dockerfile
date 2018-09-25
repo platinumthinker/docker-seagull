@@ -1,7 +1,7 @@
 FROM ubuntu
 
 RUN apt update &&\
-  apt -y install curl vim g++ make libc-dev perl binutils git libglib2.0-dev ksh bison flex &&\
+  apt -y install strace ltrace curl vim g++ make libc-dev perl binutils git libglib2.0-dev ksh bison flex &&\
   mkdir -p ~/opt/src &&\
   git clone https://github.com/codeghar/Seagull.git ~/opt/src/seagull &&\
   cd ~/opt/src/seagull &&\
