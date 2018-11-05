@@ -20,7 +20,6 @@ RUN cd ~/opt/src/seagull &&\
   apt -y install libglib2.0-0 && \
   rm -rf ~/opt /var/lib/apt/lists/* /var/log/*
 RUN [ "/bin/bash", "-c", "mkdir -p /opt/seagull/{diameter-env,h248-env,http-env,msrp-env,octcap-env,radius-env,sip-env,synchro-env,xcap-env}/logs" ]
-COPY conf /opt/seagull/conf
 ENV LD_LIBRARY_PATH /usr/local/bin
 
 WORKDIR /opt/seagull
