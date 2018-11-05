@@ -3,8 +3,7 @@ FROM ubuntu as builder
 RUN apt update &&\
   apt -y install vim libsctp-dev curl g++ make libc-dev perl binutils git libglib2.0-dev ksh bison flex &&\
   mkdir -p ~/opt/src &&\
-  git clone https://github.com/platinumthinker/Seagull.git ~/opt/src/seagull &&\
-COPY Seagull /root/opt/src/seagull
+  git clone https://github.com/platinumthinker/Seagull.git ~/opt/src/seagull
 RUN cd ~/opt/src/seagull &&\
   git checkout native_sctp &&\
   cd ~/opt/src/seagull/seagull/trunk/src &&\
