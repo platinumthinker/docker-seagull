@@ -5,7 +5,7 @@ RUN apt update &&\
   mkdir -p ~/opt/src &&\
   git clone https://github.com/platinumthinker/Seagull.git ~/opt/src/seagull
 RUN cd ~/opt/src/seagull &&\
-  git checkout native_sctp &&\
+  git checkout sctp &&\
   cd ~/opt/src/seagull/seagull/trunk/src &&\
   curl --create-dirs -o ~/opt/src/seagull/seagull/trunk/src/external-lib-src/openssl-1.0.2e.tar.gz https://www.openssl.org/source/openssl-1.0.2e.tar.gz &&\
   echo 'BUILD_EXE_CC_FLAGS_LINUX="$BUILD_EXE_CC_FLAGS_LINUX -Wno-uninitialized"' >> ./build.conf &&\
